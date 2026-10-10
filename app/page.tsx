@@ -1,31 +1,36 @@
-import Image from "next/image";
+import { ModalComponents } from "@/components/modal";
+import { prisma } from "@/lib/prisma";
+import "@/app/modalStyle.css"; //CSSの適用方法
+import { Fragment } from "react/jsx-runtime";
+import "@/app/page.css";
+export default async function Home() {
+  const posts = await prisma.todo.findMany();
 
-export default function Home() {
   return (
     <>
-    <div>
-      <form action="/send" method="POST">
-      <div>タイトル：<input type="text" name="title" /></div>
-      <div>完了日時：<input type="date" name="date" id="date" /></div>
-      <div>詳細：<textarea name="detail"></textarea> </div>
-      <input type="submit" value="送信" />
-      </form>     
-    </div>
-
-    <div>
-<hr/>
-<dl className="todo-header">
-  <dt>タイトル</dt>
-  <dt>完了日時</dt>
-  <dt>内容</dt>
-</dl>
-
-
-
-
-    </div>
-
-</>
-    
+      <ModalComponents />
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>タイトル</th>
+            <th>完了予定日時</th>
+            <th>内容</th>
+            <th>完了日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{post.scheduledCompletion?.toString()}</td>
+              <td>{post.detail}</td>
+              <td>{post.completedAt?.toString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

@@ -18,4 +18,5 @@ model todo {
   scheduledCompletion DateTime?
   completedAt         DateTime?
   createdAt           DateTime  @default(now())
+  detail              String   
 }
