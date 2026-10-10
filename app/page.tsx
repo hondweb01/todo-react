@@ -14,9 +14,9 @@ export default async function Home() {
           <tr>
             <th>#</th>
             <th>タイトル</th>
-            <th>完了予定日時</th>
-            <th>内容</th>
+            <th>完了予定日</th>
             <th>完了日時</th>
+            <th><label htmlFor="end-check">完了確認</label></th>
           </tr>
         </thead>
         <tbody>
@@ -25,8 +25,8 @@ export default async function Home() {
               <td>{post.id}</td>
               <td>{post.title}</td>
               <td>{post.scheduledCompletion?.toString()}</td>
-              <td>{post.detail}</td>
               <td>{post.completedAt?.toString()}</td>
+              <td><input type="checkbox" name="end-check" id="end-check"/></td>              
             </tr>
           ))}
         </tbody>

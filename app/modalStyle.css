@@ -4,9 +4,9 @@
 @import "@radix-ui/colors/violet.css";
 
 /* reset */
-button,
-fieldset,
-input {
+.DialogContent button,
+.DialogContent fieldset,
+.DialogContent input {
 	all: unset;
 }
 .DialogOverlay {
